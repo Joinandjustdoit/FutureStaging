@@ -24,10 +24,11 @@ public class ToastUtil {
                 toast = Toast.makeText(FSApplication.getContext(), msg, Toast.LENGTH_SHORT);
             } else {
                 toast.setText(msg);
+                toast.setDuration(Toast.LENGTH_SHORT);
+                toast.setGravity(FSApplication.getContext().getResources().getInteger(R.integer.config_toastDefaultGravity),
+                        0,
+                        FSApplication.getContext().getResources().getDimensionPixelSize(R.dimen.toast_y_offset));
             }
-            toast.setGravity(FSApplication.getContext().getResources().getInteger(R.integer.config_toastDefaultGravity),
-                    0,
-                    FSApplication.getContext().getResources().getDimensionPixelSize(R.dimen.toast_y_offset));
             toast.show();
         }
     }
@@ -42,8 +43,9 @@ public class ToastUtil {
                 toast = Toast.makeText(FSApplication.getContext(), msg, Toast.LENGTH_SHORT);
             } else {
                 toast.setText(msg);
+                toast.setDuration(Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
             }
-            toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
     }
@@ -58,8 +60,9 @@ public class ToastUtil {
                 toast = Toast.makeText(FSApplication.getContext(), msg, Toast.LENGTH_SHORT);
             } else {
                 toast.setText(msg);
+                toast.setDuration(Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP, 0, 0);
             }
-            toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP, 0, 0);
             toast.show();
         }
     }
@@ -74,16 +77,17 @@ public class ToastUtil {
                 toast = Toast.makeText(FSApplication.getContext(), msg, Toast.LENGTH_LONG);
             } else {
                 toast.setText(msg);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM,
+                        0,
+                        FSApplication.getContext().getResources().getDimensionPixelSize(R.dimen.toast_y_offset));
             }
-            toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM,
-                    0,
-                    FSApplication.getContext().getResources().getDimensionPixelSize(R.dimen.toast_y_offset));
             toast.show();
         }
     }
 
     /**
-     *
+     * 长时间中间显示吐司
      * @param msg
      */
     public static void showLongToastCenter(String msg) {
@@ -92,20 +96,26 @@ public class ToastUtil {
                 toast = Toast.makeText(FSApplication.getContext(), msg, Toast.LENGTH_LONG);
             } else {
                 toast.setText(msg);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
             }
-            toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
     }
 
+    /**
+     * 长时间顶部显示吐司
+     * @param msg
+     */
     public static void showLongToastTop(String msg) {
         if (FSApplication.getContext() != null) {
             if (toast == null) {
                 toast = Toast.makeText(FSApplication.getContext(), msg, Toast.LENGTH_LONG);
             } else {
                 toast.setText(msg);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP, 0, 0);
             }
-            toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP, 0, 0);
             toast.show();
         }
     }
