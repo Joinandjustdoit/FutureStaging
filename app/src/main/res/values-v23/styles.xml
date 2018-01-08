@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<style name="TranslucentTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <!--<item name="android:windowTranslucentNavigation">false</item>-->
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
+        <!--&lt;!&ndash; 6.0以上 状态栏字体颜色和图标为浅黑色 &ndash;&gt;-->
+        <!--<item name="android:windowLightStatusBar">true</item>-->
+    <!--</style>-->
+</resources>

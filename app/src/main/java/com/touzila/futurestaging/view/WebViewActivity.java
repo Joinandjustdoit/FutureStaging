@@ -1,6 +1,5 @@
 package com.touzila.futurestaging.view;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
@@ -13,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.touzila.futurestaging.R;
+import com.touzila.futurestaging.view.base.BaseActivity;
 
 /**
  * Created by liu on 2017/12/26.
@@ -25,13 +25,19 @@ public class WebViewActivity extends BaseActivity {
     private WebView webview;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webview);
+    protected int getContentViewId() {
+        return R.layout.activity_webview;
+    }
+
+    @Override
+    protected void initView() {
         flRoot = (FrameLayout) findViewById(R.id.ll_root);
         pb = findViewById(R.id.pb);
         webview = (WebView) findViewById(R.id.webview);
+    }
 
+    @Override
+    protected void initData() {
         setWebViewSettings();
         otherSetting();
     }

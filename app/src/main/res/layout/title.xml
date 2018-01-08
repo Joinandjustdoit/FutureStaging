@@ -3,7 +3,8 @@
     android:id="@+id/rl_title"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="45dp">
+    android:layout_height="45dp"
+    android:background="#3F51B5">
 
     <ImageView
         android:id="@+id/iv_back"

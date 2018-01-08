@@ -21,8 +21,7 @@ public class DeviceInfoUtil {
      * @return
      */
     public static String getDeviceId() {
-        @SuppressLint("ServiceCast")
-        TelephonyManager telephonyManager = (TelephonyManager) FSApplication.getContext().getSystemService(Context.TELECOM_SERVICE);
+        TelephonyManager telephonyManager = (TelephonyManager) FSApplication.getContext().getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.getDeviceId();
     }
 

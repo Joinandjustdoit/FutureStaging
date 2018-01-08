@@ -5,10 +5,11 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url 'https://maven.google.com' }
 //        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -20,7 +21,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-//        mavenCentral()
+        mavenCentral()
 //        maven { url "https://jitpack.io" }
     }
 }
@@ -44,6 +45,8 @@ ext {
     retrofitVersion = '2.2.0'
     gsonVersion = '2.8.2'
     loggingInterceptorVersion= '3.6.0'
+    dagger_version = '2.11-rc2'
+    arch_version = '1.0.0-alpha1'
 
     junitVersion = '4.12'
     runnerVersion = '1.0.1'

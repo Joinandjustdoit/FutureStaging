@@ -1,20 +1,35 @@
 package com.touzila.futurestaging.view;
 
 
-import android.os.Bundle;
+import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-
 import com.touzila.futurestaging.R;
-
+import com.touzila.futurestaging.utils.StatusBarUtil;
+import com.touzila.futurestaging.view.base.BaseActivity;
+import com.touzila.futurestaging.view.home.HomeFragment;
+import com.touzila.futurestaging.view.my.MyFragment;
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity {
+import javax.inject.Inject;
 
-//    private FrameLayout flContainer;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
+
+/**
+ * 主界面
+ */
+public class MainActivity extends BaseActivity implements LifecycleRegistryOwner, HasSupportFragmentInjector {
+
+    private final LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
+    @Inject
+    DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
+
     private LinearLayout llBottomNavigation;
     private ArrayList<Fragment> fragments;
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -27,17 +42,34 @@ public class MainActivity extends BaseActivity {
     };
 
     @Override
+    public LifecycleRegistry getLifecycle() {
+        return lifecycleRegistry;
+    }
+
+    @Override
+    public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
+        return dispatchingAndroidInjector;
+    }
+
+    @Override
     protected int getContentViewId() {
         return R.layout.activity_main;
     }
 
     @Override
-    protected void initView() {
-//        flContainer = (FrameLayout) findViewById(R.id.fl_container);
-        llBottomNavigation = (LinearLayout) findViewById(R.id.ll_bottom_navigation);
+    protected void setStatusBar() {
+        StatusBarUtil.setTransparentForImageViewInFragment(this,null);
+    }
 
+    @Override
+    protected void initView() {
+        llBottomNavigation = (LinearLayout) findViewById(R.id.ll_bottom_navigation);
         initFragment();
         setListener();
+    }
+
+    @Override
+    protected void initData() {
     }
 
 
@@ -46,10 +78,10 @@ public class MainActivity extends BaseActivity {
      */
     private void initFragment() {
         fragments = new ArrayList<>();
-        fragments.add(new Home0Fragment());
-        fragments.add(new Home1Fragment());
-        fragments.add(new Home2Fragment());
-        fragments.add(new Home3Fragment());
+        fragments.add(new HomeFragment());
+        fragments.add(new MyFragment());
+        fragments.add(new MyFragment());
+        fragments.add(new MyFragment());
         onClickListener.onClick(llBottomNavigation.getChildAt(0));
     }
 
@@ -100,4 +132,5 @@ public class MainActivity extends BaseActivity {
         Fragment fragment = fragments.get(index);
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, fragment).commit();
     }
+
 }
