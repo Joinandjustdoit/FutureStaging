@@ -90,11 +90,11 @@ public class HomeFragment extends LifecycleFragment implements Injectable {
             }
         });
 
-        UserPresenter.logins(params, new LoadDataImpl<LoginEntity>() {
-            @Override
-            public void callData(LoginEntity data) {
-                Log.d("login", data.toString());
-            }
-        });
+//        UserPresenter.logins(params, new LoadDataImpl<LoginEntity>() {
+//            @Override
+//            public void callData(LoginEntity data) {
+//                Log.d("login", data.toString());
+//            }
+//        });
     }
 }

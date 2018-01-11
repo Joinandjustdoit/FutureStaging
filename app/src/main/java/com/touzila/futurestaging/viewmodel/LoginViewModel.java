@@ -28,28 +28,50 @@ public class LoginViewModel extends ViewModel {
 
     private LiveData<LoginEntity> loginEntityLiveData;
 
+    private LoginEntity loginEntity;
+
     @Inject
     public LoginViewModel() {
-        loginEntityLiveData = Transformations.switchMap(loginRequestParams, new Function<LoginRequestParams, LiveData<LoginEntity>>() {
+//        loginEntityLiveData = Transformations.switchMap(loginRequestParams, new Function<LoginRequestParams, LiveData<LoginEntity>>() {
+//            @Override
+//            public LiveData<LoginEntity> apply(LoginRequestParams input) {
+//                if (input == null) {
+//                    return AbsentLiveData.create();
+//                } else {
+//                    try {
+//                        UserPresenter.login(input, new LoadDataImpl<LiveData<LoginEntity>>() {
+//                            @Override
+//                            public void callData(LiveData<LoginEntity> data) {
+//                                loginEntityLiveData = data;
+//                            }
+//                        });
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                return loginEntityLiveData;
+//            }
+//        });
+        Transformations.map(loginRequestParams, new Function<LoginRequestParams, LoginEntity>() {
             @Override
-            public LiveData<LoginEntity> apply(LoginRequestParams input) {
+            public LoginEntity apply(LoginRequestParams input) {
                 if (input == null) {
-                    return AbsentLiveData.create();
+                    return null;
                 } else {
-                    try {
-                        UserPresenter.login(input, new LoadDataImpl<LiveData<LoginEntity>>() {
-                            @Override
-                            public void callData(LiveData<LoginEntity> data) {
-                                loginEntityLiveData = data;
-                            }
-                        });
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    UserPresenter.logins(input, new LoadDataImpl<LoginEntity>() {
+                        @Override
+                        public void callData(LoginEntity data) {
+                            loginEntity = data;
+                        }
+                    });
+                    return loginEntity;
                 }
-                return loginEntityLiveData;
             }
         });
+    }
+
+    public LoginEntity getLoginEntity() {
+        return loginEntity;
     }
 
     public LiveData<LoginEntity> getLoginEntityLiveData() {

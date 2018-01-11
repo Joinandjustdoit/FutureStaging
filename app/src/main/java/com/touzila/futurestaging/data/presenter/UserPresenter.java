@@ -36,6 +36,7 @@ public class UserPresenter {
             protected void onCallData(LoginEntity loginEntity) {
                 MutableLiveData<LoginEntity> liveData = new MutableLiveData<>();
                 liveData.setValue(loginEntity);
+                liveData.postValue(loginEntity);
                 loadData.callData(liveData);
 //                loadData.callData(loginEntity);
             }
