@@ -59,6 +59,7 @@ public class HomeFragment extends LifecycleFragment implements Injectable {
         loginViewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel.class);
 
 
+
         params = new LoginRequestParams();
         params.setAgentNum(DeviceInfoUtil.getDeviceId());
         params.setMethod("userAccountService.login");
